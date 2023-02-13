@@ -1,4 +1,4 @@
-![Alt Text](https://s3.amazonaws.com/appforest_uf/d100/f1676328585060x229988196467270980/256.png)
+![Power Prompt Logo](https://s3.amazonaws.com/appforest_uf/d100/f1676328585060x229988196467270980/256.png)
 
 
 # Power Prompt
@@ -7,6 +7,9 @@ A Chrome Extension for ChatGPT/OpenAi Power Users is a cutting-edge Chrome exten
 The intuitive interface and easy-to-use features make it simple to get the most out of ChatGPT and create unique and engaging conversations. Whether you're a content creator, researcher, or just looking to have some fun, Power Prompt v1 beta is the perfect tool for you. Get ready to unleash the full power of ChatGPT and start creating today!
 
 ----
+![Power Prompt Screen Shot](https://s3.amazonaws.com/appforest_uf/d100/f1676328995952x175444524274057200/screen-1.png)
+
+
 # A few notes on using Power Prompt for ChatGPT and OpenAi.
 
 ## How do I get going?

@@ -28,6 +28,8 @@ Go to "More tools" and then "Extensions": From the menu, select "More tools" and
 
 Enable "Developer mode": On the extensions page, you should see a toggle switch labeled "Developer mode" in the upper-right corner. Turn this switch on.
 
+Download the latest release > https://github.com/ruvnet/powerprompt/blob/main/downloads/
+
 Load the extension: Click the "Load unpacked" button and select the folder that contains the extension you downloaded in step 1.
 
 Confirm installation: Chrome will display a warning that the extension is not from the Chrome Web Store and that it could harm your computer. If you trust the source of the extension, click "Add extension" to install it.

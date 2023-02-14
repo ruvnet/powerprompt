@@ -55,9 +55,9 @@ function addLink() {
     <input type="password" id="api-key" class="border border-gray-700 rounded-md p-2" style="width:100%; background-color:#1e1e1e; color: white; margin-left: 0px;" />
     <div style="margin-top: 5px; margin-bottom: 15px;" >
     <input type="checkbox" style="display:none;" id="hide-response" class="border border-gray-700 rounded-md p-2" style="margin-right: 5px;" />
-    <span style="color:#ffffff; display:none;">Hide GPT Responses</span>
+    <button id="toggleButton">Toggle Response</button>
     </div>
-    
+
     <style>
     @import url('https://fonts.googleapis.com/css2?family=Mr+Dafoe&display=swap');
     </style>
@@ -157,7 +157,10 @@ function addLink() {
                 newDiv.style.textAlign = 'left';
                 newDiv.style.width = '50%';
                 newDiv.id = 'responseAPI_output';
-                
+                newDiv.style.color = '#ffffff';
+                newDiv.style.marginTop = '10px';
+                newDiv.style.borderRadius = '10px';
+
                 
     // Make a request to the OpenAI API
     const url = `https://api.openai.com/v1/completions`;
@@ -203,11 +206,17 @@ function addLink() {
         newDiv.innerHTML = `New response added by model ${selectedModel}:<br>${response}`;
   
         // Add a pause to wait for the new container to be added to the page
-        setTimeout(() => {
-          // Append the new element to the last container within the response container
-          const lastResponse = responseContainer.querySelector(`div:nth-child(${responseContainer.childElementCount})`);
-          lastResponse ? responseContainer.insertBefore(newDiv, lastResponse) : responseContainer.appendChild(newDiv);
-        }, 500); // 500ms pause
+                   //works but not for first const lastResponse = responseContainer.querySelector(`div:nth-child(${responseContainer.childElementCount})`);
+
+                   setTimeout(() => {
+                    const lastResponse = responseContainer.querySelector(`div:nth-child(${responseContainer.childElementCount})`);
+                    if (lastResponse && lastResponse.innerHTML.trim() !== '') {
+                      responseContainer.insertBefore(newDiv, lastResponse);
+                    } else {
+                      responseContainer.appendChild(newDiv);
+                    }
+                  }, 500);
+                  
       } else {
         console.error('No choices found in the response data');
       }
@@ -255,7 +264,7 @@ function addLink() {
             const chatInput = document.querySelector('textarea');
             const newDiv = document.createElement('div');
             newDiv.innerHTML = `
-            <div style="width:98%; margin-bottom:10px; background-color:#2b2c2f; margin-right:0px; border:1px solid #353641; border-radius:4px; padding:4px;">
+            <div style="width:98%; margin-bottom:10px; color:#ffffff; background-color:#2b2c2f; margin-right:0px; border:1px solid #353641; border-radius:4px; padding:4px;">
             <span><a href="https://twitter.com/ruv" target="_top"><img style="width:40px; float:left; margin-top:4px; margin-right:5px" src="https://s3.amazonaws.com/appforest_uf/d100/f1676324247556x118387251401926190/1024.png" border="0"></a></span>
             <span style="margin-right:5px;">Template</span>
             <select id="prompt-templates" style="width:205px; color: white; background-color:#1e1e1e; margin-top:2px;" class="border border-gray-700 rounded-md p-2">
@@ -492,4 +501,43 @@ const interval = setInterval(() => {
     }
   }, 100); // 100ms interval
   
- 
+  // show hide responseAPI_output
+  const toggleButton = document.getElementById('toggleButton');
+  document.body.appendChild(toggleButton);
+
+  // Load the saved state from local storage
+  const savedState = chrome.storage.local.get('responseAPI_output_state', (data) => {
+    if (data && data.responseAPI_output_state) {
+      // If there's a saved state, use it
+      const responseDiv = document.getElementById('responseAPI_output');
+      if (responseDiv) {
+        responseDiv.style.display = data.responseAPI_output_state;
+      }
+    }
+  });
+
+  // Add a click event listener to the body element
+  document.body.addEventListener('click', (event) => {
+    // Check if the clicked element has id 'toggleButton'
+    if (event.target.id === 'toggleButton') {
+      const responseDiv = document.getElementById('responseAPI_output');
+      if (responseDiv) {
+        // Toggle the display style
+        responseDiv.style.display = responseDiv.style.display === 'none' ? 'block' : 'none';
+
+        // Save the state to local storage
+        chrome.storage.local.set({'responseAPI_output_state': responseDiv.style.display});
+      }
+    }
+  });
+  const shouldHide = true; // Replace this with your condition
+
+  // Loop through all elements with the class 'w-full h-32 md:h-48 flex-shrink-0'
+  const elements = document.getElementsByClassName('w-full h-32 md:h-48 flex-shrink-0');
+  for (let i = 0; i < elements.length; i++) {
+    const element = elements[i];
+    // Set the 'display' style to 'none' if the condition is true
+    if (shouldHide) {
+      element.style.display = 'none';
+    }
+  }

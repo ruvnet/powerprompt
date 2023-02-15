@@ -1,5 +1,5 @@
 
-## Installing the pre-release version.
+## Installing the pre-release version of Power Prompt.
 To install a Chrome extension that is not in the Chrome Web Store, you can use the following steps:
 
 Download the extension file: If the extension is not available in the Chrome Web Store, you may need to download the extension file from a trusted source. You should only download extensions from trusted sources to avoid malware and security issues.

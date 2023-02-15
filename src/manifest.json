@@ -1,0 +1,33 @@
+{
+    "name": "Power Prompt For ChatGPT & OpenAi",
+    "version": "1.0",
+    "manifest_version": 3,
+    "description": "Power Prompt - Enhance ChatGPT interaction. Seamless conversations. Choose models, save templates, set temp, length & tokens.",
+    "icons": {
+      "16": "icons/16.png",
+      "32": "icons/32.png",
+      "48": "icons/48.png",
+      "128": "icons/128.png",
+      "256": "icons/256.png",
+      "512": "icons/512.png",
+      "1024": "icons/1024.png"
+    },
+    "host_permissions": [
+      "https://chat.openai.com/"
+    ],
+    "permissions": [
+      "storage"
+    ],
+    "content_scripts": [
+      {
+        "matches": [
+          "https://chat.openai.com/*"
+        ],
+        "js": [
+          "content.js"
+        ],
+        "run_at": "document_end"
+      }
+    ]
+  }
+  

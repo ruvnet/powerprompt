@@ -631,7 +631,7 @@ if (openAi_title) {
     openAi_title.textContent = 'Power Prompt: ChatGPT';
 }
 
-
+// updated 2022-14-02
 // various styles
 let style = document.createElement('style');
 style.innerHTML = '.w-full.h-32.md\\:h-48.flex-shrink-0 {margin-bottom: 0px !important; display:none; }';
